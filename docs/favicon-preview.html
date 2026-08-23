@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>favicon 候选预览</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; padding: 24px; }
+  .cand { margin-bottom: 28px; }
+  .cand h3 { font-size: 14px; margin: 0 0 8px; }
+  .sizes { display: flex; align-items: flex-end; gap: 24px; padding: 16px; border-radius: 8px; background: repeating-conic-gradient(#eee 0 25%, #fff 0 50%) 0 0 / 16px 16px; width: fit-content; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .cell span { font-size: 10px; color: #666; }
+  /* 模拟浏览器标签页 */
+  .tabmock { display: flex; align-items: center; gap: 8px; margin-top: 10px; width: fit-content; padding: 8px 16px; background: #dee1e6; border-radius: 10px 10px 0 0; }
+  .tabmock .site { display: flex; align-items: center; gap: 6px; background: #fff; border-radius: 8px 8px 0 0; padding: 6px 14px; font-size: 12px; color: #333; }
+  .tabmock .other { display: flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; color: #555; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  const CANDIDATES = [
+    ['candidate-a-bare.svg', 'A · 裸标记（紫，同顶栏 BrandMark）'],
+    ['candidate-b-violet-badge.svg', 'B · 紫底圆角徽章 + 白色标记'],
+    ['candidate-c-dark-lime.svg', 'C · 暗底圆角徽章 + 柠檬绿标记'],
+    ['candidate-d-adaptive.svg', 'D · 自适应徽章（浅色紫底白标 / 深色暗底绿标）'],
+  ]
+  const SIZES = [[16, '16px'], [24, '24px'], [32, '32px'], [64, '64px'], [128, '128px']]
+
+  const root = document.getElementById('root')
+  for (const [file, title] of CANDIDATES) {
+    const div = document.createElement('div')
+    div.className = 'cand'
+    div.innerHTML = `<h3>${title}</h3>`
+    const sizes = document.createElement('div')
+    sizes.className = 'sizes'
+    for (const [s, label] of SIZES) {
+      const cell = document.createElement('div')
+      cell.className = 'cell'
+      cell.innerHTML = `<img src="./favicons/${file}" width="${s}" height="${s}"><span>${label}</span>`
+      sizes.appendChild(cell)
+    }
+    div.appendChild(sizes)
+    const mock = document.createElement('div')
+    mock.className = 'tabmock'
+    mock.innerHTML = `
+      <div class="site"><img src="./favicons/${file}" width="16" height="16">Console — 模型路由控制台</div>
+      <div class="other"><img src="./favicons/candidate-b-violet-badge.svg" width="16" height="16" style="opacity:.35">其它标签页</div>`
+    div.appendChild(mock)
+    root.appendChild(div)
+  }
+</script>
+</body>
+</html>
