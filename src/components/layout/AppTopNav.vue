@@ -18,7 +18,7 @@ const PRODUCT_LINKS = ['Home', 'Models', 'Benchmarks', 'Chat', 'Rankings', 'Apps
   >
     <a href="/" class="flex shrink-0 items-center gap-2">
       <BrandMark :size="26" class="text-primary" />
-      <span class="font-brand text-[17px] font-semibold tracking-tight">CloseRouter</span>
+      <span class="font-brand text-[17px] font-semibold tracking-tight">closerouter</span>
     </a>
 
     <label
