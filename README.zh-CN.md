@@ -1,6 +1,6 @@
 # CloseRouterUI
 
-一套值得偷走的 Vue 3 控制台设计令牌系统。亮色是紫，暗色是柠檬绿 —— 而组件代码里
+一套值得直接抄走的 Vue 3 控制台设计令牌系统。亮色是紫，暗色是柠檬绿 —— 而组件代码里
 **一个 `dark:` 变体都没有**。
 
 [![CI](https://github.com/yak33/CloseRouterUI/actions/workflows/ci.yml/badge.svg)](https://github.com/yak33/CloseRouterUI/actions/workflows/ci.yml)
