@@ -95,6 +95,18 @@ Get-ChildItem -Recurse -Include *.vue,*.ts -Path src | ForEach-Object {
 }
 ```
 
+### 6. 不要往 Vite 监听范围内的目录写文件
+
+Windows 上，往被 watch 的目录里写文件（例如用 Playwright 生成截图到 `docs/screenshots/`）
+会让 Vite 在写入未完成时去 watch 它，抛 `EBUSY` 并**直接杀掉整个 dev server**：
+
+```
+Error: EBUSY: resource busy or locked, watch '...\docs\screenshots\logs-dark.png'
+```
+
+`vite.config.ts` 里已经用 `server.watch.ignored` 排除了 `docs/` 和 `dist/`。
+新增这类产物目录时记得一并加进去。
+
 ## 架构
 
 三层，改样式只动最底层：
