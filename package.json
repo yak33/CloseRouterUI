@@ -23,13 +23,14 @@
     "type": "git",
     "url": "git+https://github.com/yak33/CloseRouterUI.git"
   },
-  "homepage": "https://yak33.github.io/CloseRouterUI/",
+  "homepage": "https://closerouter-ui.vercel.app",
   "bugs": {
     "url": "https://github.com/yak33/CloseRouterUI/issues"
   },
   "engines": {
     "node": ">=20.19.0"
   },
+  "packageManager": "pnpm@11.11.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",

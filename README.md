@@ -8,7 +8,7 @@ Violet in light mode, lime in dark — and **zero `dark:` variants** in the comp
 [![Vue](https://img.shields.io/badge/Vue-3.5-42b883)](https://vuejs.org/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-v4-38bdf8)](https://tailwindcss.com/)
 
-**[Live demo](https://yak33.github.io/CloseRouterUI/)** · [中文文档](README.zh-CN.md)
+**[Live demo](https://closerouter-ui.vercel.app)** · [中文文档](README.zh-CN.md)
 
 ![Activity page, dark](docs/screenshots/activity-dark.png)
 

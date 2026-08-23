@@ -8,7 +8,7 @@
 [![Vue](https://img.shields.io/badge/Vue-3.5-42b883)](https://vuejs.org/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-v4-38bdf8)](https://tailwindcss.com/)
 
-**[在线预览](https://yak33.github.io/CloseRouterUI/)** · [English](README.md)
+**[在线预览](https://closerouter-ui.vercel.app)** · [English](README.md)
 
 ![Activity 页 · 暗色](docs/screenshots/activity-dark.png)
 

@@ -28,5 +28,8 @@ dist-ssr
 .env.*
 !.env.example
 
+# Vercel CLI 生成的本地项目关联信息
+.vercel
+
 # Playwright MCP 调试时写入的快照目录
 .playwright-mcp
