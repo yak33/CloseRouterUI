@@ -3,7 +3,6 @@
 一套值得直接抄走的 Vue 3 控制台设计令牌系统。亮色是紫，暗色是柠檬绿 —— 而组件代码里
 **一个 `dark:` 变体都没有**。
 
-[![CI](https://github.com/yak33/CloseRouterUI/actions/workflows/ci.yml/badge.svg)](https://github.com/yak33/CloseRouterUI/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Vue](https://img.shields.io/badge/Vue-3.5-42b883)](https://vuejs.org/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-v4-38bdf8)](https://tailwindcss.com/)
