@@ -1,0 +1,210 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* ------------------------------------------------------------------
+ * 设计令牌 —— 数值取自 OpenRouter 生产环境 CSS 的 :root / .dark 块，
+ * 转成 Tailwind v4 写法。
+ *
+ * 这套系统有三个值得理解的结构性设计，改动前请先读懂：
+ *
+ *   1. accent 是 primary 的 7.8% 淡染，accent-foreground 就是 primary 本身。
+ *      于是「菜单选中态」只需要写 bg-accent + text-accent-foreground，
+ *      明暗两套强调色的差异由令牌层自己吸收，组件里一行条件判断都不用写。
+ *
+ *   2. border / input / muted 不是独立的灰阶，而是「前景色带低透明度」。
+ *      这是明暗两态永远协调的根本原因 —— 分隔线天然带着当前主题的色温。
+ *
+ *   3. 强调色明暗完全不同：亮色是紫 (#7624F4)，暗色是柠檬绿 (#C8FF00)。
+ *      不要试图统一它们，这是刻意的品牌表达。
+ *
+ * @author ZHANGCHAO
+ * @date 2026/08/22
+ * ------------------------------------------------------------------ */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* 页面底不是纯白（#FCFCFE），卡片才是纯白 —— 卡片比页面「亮」，
+     于是不需要阴影就能浮起来 */
+  --background: hsl(240 50% 99.2%);
+  --foreground: hsl(197.1 53.8% 2.5%);
+  --inverse: hsl(197.1 53.8% 2.5%);
+  --inverse-foreground: hsl(240 50% 99.2%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(197.1 53.8% 2.5%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(197.1 53.8% 2.5%);
+
+  --primary: hsl(263.7 90.4% 54.9%);
+  --primary-foreground: hsl(240 50% 99.2%);
+  --secondary: hsl(263.7 90.4% 54.9% / 0.078);
+  --secondary-foreground: hsl(263.7 90.4% 54.9%);
+  --accent: hsl(263.7 90.4% 54.9% / 0.078);
+  --accent-foreground: hsl(263.7 90.4% 54.9%);
+  /* 悬浮态比选中态更轻：3.1% vs 7.8%，两级淡染拉开「可点」与「在此」 */
+  --accent-subtle: hsl(263.7 90.4% 54.9% / 0.031);
+  --ring: hsl(263.7 90.4% 54.9%);
+
+  --muted: hsl(197.1 53.8% 2.5% / 0.031);
+  --muted-foreground: hsl(197.1 53.8% 2.5% / 0.69);
+  --border: hsl(197.1 53.8% 2.5% / 0.078);
+  --input: hsl(197.1 53.8% 2.5% / 0.078);
+
+  --destructive: hsl(346.8 77.2% 49.8%);
+  --destructive-foreground: hsl(240 50% 99.2%);
+  --success: hsl(154.9 100% 37.5%);
+  --success-foreground: hsl(240 50% 99.2%);
+  --warning: hsl(41.8 100% 45%);
+  --warning-foreground: hsl(240 50% 99.2%);
+  --info: hsl(217.2 97.6% 44.1%);
+  --info-foreground: hsl(240 50% 99.2%);
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(197.1 53.8% 2.5%);
+  --foreground: hsl(240 50% 99.2%);
+  --inverse: hsl(240 50% 99.2%);
+  --inverse-foreground: hsl(197.1 53.8% 2.5%);
+
+  --card: hsl(197 30% 4.5%);
+  --card-foreground: hsl(240 50% 99.2%);
+  --popover: hsl(197 30% 4.5%);
+  --popover-foreground: hsl(240 50% 99.2%);
+
+  --primary: hsl(72.9 100% 50%);
+  --primary-foreground: hsl(197.1 53.8% 2.5%);
+  --secondary: hsl(72.9 100% 50% / 0.078);
+  --secondary-foreground: hsl(72.9 100% 50%);
+  --accent: hsl(72.9 100% 50% / 0.078);
+  --accent-foreground: hsl(72.9 100% 50%);
+  --accent-subtle: hsl(72.9 100% 50% / 0.031);
+  --ring: hsl(72.9 100% 50%);
+
+  --muted: hsl(240 50% 99.2% / 0.031);
+  --muted-foreground: hsl(240 50% 99.2% / 0.627);
+  --border: hsl(240 50% 99.2% / 0.078);
+  --input: hsl(240 50% 99.2% / 0.078);
+
+  --destructive: hsl(346.8 77.2% 49.8%);
+  --destructive-foreground: hsl(240 50% 99.2%);
+  --success: hsl(161.4 72.8% 53.9%);
+  --success-foreground: hsl(197.1 53.8% 2.5%);
+  --warning: hsl(40.2 100% 50%);
+  --warning-foreground: hsl(197.1 53.8% 2.5%);
+  --info: hsl(219.4 100% 65.3%);
+  --info-foreground: hsl(197.1 53.8% 2.5%);
+}
+
+/* 语义化图表色：明暗共用同一组 hex。图表要跨主题保持可比性，
+   同一条线在两个主题下换色会让人误以为换了指标。 */
+:root,
+.dark {
+  --chart-cost: #6366f1;
+  --chart-requests: #22c55e;
+  --chart-prompt: #3b82f6;
+  --chart-completion: #a855f7;
+  --chart-cached: #f59e0b;
+  --chart-neutral: #94a3b8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-subtle: var(--accent-subtle);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  --color-chart-cost: var(--chart-cost);
+  --color-chart-requests: var(--chart-requests);
+  --color-chart-prompt: var(--chart-prompt);
+  --color-chart-completion: var(--chart-completion);
+  --color-chart-cached: var(--chart-cached);
+  --color-chart-neutral: var(--chart-neutral);
+
+  /* 圆角阶梯沿用参考实现：4 / 6 / 8 / 12 */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  --font-brand: 'Outfit Variable', 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scheme-light dark:scheme-dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* 450 而非 400：可变字体下让正文略微「立」起来。
+       必须用 font-weight 而不是 font-variation-settings —— 后者会压过
+       所有 font-medium / font-semibold 工具类，让字重层次全部失效。 */
+    font-weight: 450;
+  }
+
+  /* 数字表格必须等宽对齐，否则密集数据会显得毛躁。
+     注意只切 tabular-nums，不切等宽字体 —— 表格数字仍走正文字体，
+     换成 mono 会让数字列和文字列的字形割裂开。等宽体只留给密钥、代码。 */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    @apply bg-primary/25;
+  }
+}
+
+@layer components {
+  /* 细滚动条：内容区滚动时不喧宾夺主 */
+  .scrollbar-subtle {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .scrollbar-subtle::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-subtle::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border;
+  }
+  .scrollbar-subtle::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

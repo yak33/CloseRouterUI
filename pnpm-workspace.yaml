@@ -1,0 +1,7 @@
+# pnpm 11 起，这类设置从 package.json 的 "pnpm" 字段搬到了本文件。
+#
+# vue-demi（@vueuse/core 的传递依赖）带 postinstall 脚本，用于按当前 Vue 版本
+# 切换入口。不显式放行的话，pnpm 会以 ERR_PNPM_IGNORED_BUILDS 退出码 1 结束，
+# 连带 `pnpm build` 的依赖状态检查一起失败 —— CI 里同样会挂。
+allowBuilds:
+  vue-demi: true
