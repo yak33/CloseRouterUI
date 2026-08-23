@@ -1,21 +1,26 @@
 <script setup lang="ts">
 /**
- * 品牌标记：独角仙形象插画，紫色与 --primary 同族。
- * 插画自带配色，刻意不走 currentColor —— 形象类标志独立于令牌体系，
- * 明暗主题下保持同一副面孔。
+ * 品牌标记：三条汇聚到一点的路径，呼应「多模型路由到统一入口」。
+ * 用 currentColor 描边，跟随文字颜色，明暗主题无需额外处理。
  */
-import logoUrl from '@/assets/logo.png'
-
 withDefaults(defineProps<{ size?: number }>(), { size: 22 })
 </script>
 
 <template>
-  <img
-    :src="logoUrl"
+  <svg
     :width="size"
     :height="size"
-    alt=""
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
     aria-hidden="true"
-    class="shrink-0 object-contain"
-  />
+  >
+    <path d="M3 5.5h3.5L11 12l-4.5 6.5H3" />
+    <path d="M3 12h8" />
+    <circle cx="17.5" cy="12" r="3.2" />
+    <path d="M14.3 12H11" />
+  </svg>
 </template>
